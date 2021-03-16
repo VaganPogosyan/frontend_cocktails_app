@@ -1,6 +1,16 @@
 import React from 'react';
 import DrinkInfo from './DrinkInfo'
 
+let baseURL = '';
+if (process.env.NODE_ENV === 'development') {
+    baseURL = 'http://localhost:3003'
+} else {
+    baseURL = 'your heroku backend url here'
+};
+  
+// baseURL = 'https://fathomless-sierra-68956.herokuapp.com'
+console.log('current base URL:', baseURL);
+
 class AddDrink extends React.Component {
     constructor (props) {
         super(props)
