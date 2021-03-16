@@ -1,4 +1,5 @@
 import React from 'react';
+import DrinkInfo from './DrinkInfo'
 
 class AddDrink extends React.Component {
     constructor (props) {
@@ -20,6 +21,16 @@ class AddDrink extends React.Component {
         event.preventDefault()
         this.setState({
           searchURL: this.state.baseURL + this.state.drinkName
+        }, () => {
+            // fetch request
+            fetch(this.state.searchURL)
+                .then(response => {
+                    return response.json()
+                }).then(json => this.setState({
+                    drinks: json.drinks,
+                    drinkName: ''
+                  }),
+                err => console.log(err))
         })
       }
 
@@ -41,8 +52,15 @@ class AddDrink extends React.Component {
                         value="Search"
                     />
                 </form>
-                {/* render search results */}
+                {/* link to show search results in json format */}
                 <a href={this.state.searchURL}>{this.state.searchURL}</a>
+                {/* render search results */}
+                {(this.state.drinks)
+                    ? <DrinkInfo drinks={this.state.drinks} />
+                    : ''
+                }
+                {/* <DrinkInfo /> */}
+                {/* add to favorite list button */}
             </div>
         )
     }
