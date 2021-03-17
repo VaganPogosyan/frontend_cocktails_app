@@ -17,6 +17,7 @@ class ShowCocktail extends React.Component {
       image: this.props.drink.strDrinkThumb,
       allDrinks: [],
       drinks: [],
+      showList: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
@@ -69,36 +70,48 @@ class ShowCocktail extends React.Component {
       .catch((error) => console.log({ Error: error }));
     console.log("submit");
     this.getDrinks();
+    this.setState({
+      showList: !this.state.showList,
+    });
   }
 
   render() {
     return (
       <div>
-        <h1>cocktails</h1>
-        <h3>{this.props.drink.strDrink}</h3>
-        <img
-          src={this.props.drink.strDrinkThumb}
-          alt="cocktail"
-          height="200px"
-        />
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label htmlFor="name"></label>
-            <input type="text" name="name" id="name" value={this.state.name} />
-            <label htmlFor="image"></label>
-            <input
-              type="text"
-              name="image"
-              id="image"
-              value={this.state.image}
-            />
-            <input type="submit" value="Add to my list" />
-          </form>
-        </div>
-
-        <div>
+        {this.state.showList ? (
           <MyCocktails allDrinks={this.state.allDrinks} />
-        </div>
+        ) : (
+          <div>
+            <h1>cocktails</h1>
+            <h3>{this.props.drink.strDrink}</h3>
+            <img
+              src={this.props.drink.strDrinkThumb}
+              alt="cocktail"
+              height="200px"
+            />
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <label htmlFor="name"></label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={this.state.name}
+                />
+                <label htmlFor="image"></label>
+                <input
+                  type="text"
+                  name="image"
+                  id="image"
+                  value={this.state.image}
+                />
+                <input type="submit" value="Add to my list" />
+              </form>
+            </div>
+
+            <div></div>
+          </div>
+        )}
       </div>
     );
   }
