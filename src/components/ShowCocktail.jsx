@@ -38,7 +38,6 @@ class ShowCocktail extends React.Component {
       allDrinks: [],
       drinks: [],
       showList: false,
-
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
@@ -61,12 +60,13 @@ class ShowCocktail extends React.Component {
   }
 
   handleAddDrinks(drink) {
-    const copyDrinks = [...this.state.drinks];
+    console.log(this.state.allDrinks);
+    const copyDrinks = [...this.state.allDrinks];
     copyDrinks.unshift(drink);
     this.setState({
-      drinks: copyDrinks,
+      allDrinks: copyDrinks,
     });
-    console.log(this.state.drinks);
+    console.log(this.state.allDrinks);
   }
 
   handleSubmit(event) {
@@ -90,9 +90,10 @@ class ShowCocktail extends React.Component {
       .then((resJson) => {
         this.handleAddDrinks(resJson);
         this.setState({
-          name: this.state.name,
-          image: this.state.image,
-          instructions: this.state.instructions,
+          name: "",
+          image: "",
+          instructions: "",
+          ingredients: "",
         });
       })
       .catch((error) => console.log({ Error: error }));
