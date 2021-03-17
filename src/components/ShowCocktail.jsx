@@ -1,4 +1,5 @@
 import React from "react";
+import MyCocktails from "./MyCocktails";
 
 let baseURL = "";
 
@@ -18,11 +19,8 @@ class ShowCocktail extends React.Component {
       drinks: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.getDrinks = this.getDrinks.bind(this);
+    this.getDrinks = this.getDrinks.bind(this);
     this.handleAddDrinks = this.handleAddDrinks.bind(this);
-  }
-  componentDidMount() {
-    this.getDrinks();
   }
 
   getDrinks() {
@@ -70,6 +68,7 @@ class ShowCocktail extends React.Component {
       })
       .catch((error) => console.log({ Error: error }));
     console.log("submit");
+    this.getDrinks();
   }
 
   render() {
@@ -93,18 +92,12 @@ class ShowCocktail extends React.Component {
               id="image"
               value={this.state.image}
             />
-            <input type="submit" value="Add" />
+            <input type="submit" value="Add to my list" />
           </form>
         </div>
 
         <div>
-          {this.state.allDrinks.map((drink) => {
-            return (
-              <ul key={drink._id}>
-                <li>{drink.name}</li>
-              </ul>
-            );
-          })}
+          <MyCocktails allDrinks={this.state.allDrinks} />
         </div>
       </div>
     );
