@@ -3,27 +3,26 @@ import ShowSelectedDrink from "./ShowSelectedDrink";
 
 class MyCocktails extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      name: '',
-      image: '',
+      name: "",
+      image: "",
       hide: true,
-      drink: ''
-    }
+      drink: "",
+    };
   }
 
-  getSelectedCocktail() {
-    console.log(drink)
+  getSelectedCocktail(drink) {
     this.setState({
       drink: drink,
-      hide: !this.state.hide
-    })
+      hide: !this.state.hide,
+    });
+    console.log(this.state.drink);
   }
 
   render() {
     return (
       <div>
-
         {this.state.hide ? (
           this.props.allDrinks.map((drink) => {
             return (
@@ -31,13 +30,15 @@ class MyCocktails extends React.Component {
                 <h1>My Cocktails</h1>
                 <h3>{drink.name}</h3>
                 <img src={drink.image} height="200px"></img>
-                <button onClick={() => this.props.deleteDrink(drink._id)}>Delete</button>
+                <button onClick={() => this.props.deleteDrink(drink._id)}>
+                  Delete
+                </button>
               </div>
             );
           })
-        ) : (< ShowSelectedDrink drink={this.state.drink} />)
-
-        }
+        ) : (
+          <ShowSelectedDrink drink={this.state.drink} />
+        )}
       </div>
     );
   }
