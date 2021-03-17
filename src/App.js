@@ -9,6 +9,7 @@ class App extends React.Component {
       baseURL: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
       drinkName: '',
       searchURL: '',
+      drinks: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +31,7 @@ class App extends React.Component {
         .then(response => { return response.json() })
         .then(json => this.setState({
           drinks: json.drinks,
-          drinkName: ''
+          drinkName: '',
         }))
     })
 

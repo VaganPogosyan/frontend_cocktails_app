@@ -8,57 +8,35 @@ class CocktailsSearchResults extends React.Component {
       baseURL: "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=",
       searchURL: "",
       drinkId: "",
-      show: false,
+      drink: "",
+      hide: true,
     };
   }
-  getCocktail(key) {
-    console.log(key);
+  getCocktail(drink) {
+    console.log(drink);
     this.setState({
-      drinkId: key,
-      show: !this.state.show,
+      drink: drink,
+      hide: !this.state.hide,
     });
   }
 
   render() {
     return (
       <div>
-        {this.state.show ? (
-          <ShowCocktail drinkId={this.state.drinkId} />
+        {this.state.hide ? (
+          this.props.drinks.map((drink) => {
+            return (
+              <div key={drink.idDrink} onClick={() => this.getCocktail(drink)}>
+                <h3>{drink.strDrink}</h3>
+                <img src={drink.strDrinkThumb} alt="cocktail" height="200px" />
+              </div>
+            );
+          })
         ) : (
-          <div>
-            {this.props.drinks.map((drink) => {
-              return (
-                <div
-                  key={drink.idDrink}
-                  onClick={() => this.getCocktail(drink.idDrink)}
-                >
-                  <h3>{drink.strDrink}</h3>
-                  <img src={drink.strDrinkThumb} height="200"></img>
-                </div>
-              );
-            })}
-          </div>
+          <ShowCocktail drink={this.state.drink} />
         )}
       </div>
     );
   }
 }
 export default CocktailsSearchResults;
-
-// <div>
-// {this.state.show ? <ShowCocktail drinkId={this.state.drinkId} /> : ""}
-// <div>
-//   {this.props.drinks.map((drink) => {
-//     return (
-//       <div
-//         key={drink.idDrink}
-//         onClick={() => this.getCocktail(drink.idDrink)}
-//       >
-//         <p>{drink.strDrink}</p>
-//         <p>{drink.idDrink}</p>
-//         <img src={drink.strDrinkThumb} height="200"></img>
-//       </div>
-//     );
-//   })}
-// </div>
-// </div>
