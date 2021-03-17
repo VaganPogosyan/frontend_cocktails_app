@@ -12,7 +12,8 @@ class MyCocktails extends React.Component {
     }
   }
 
-  getSelectedCocktail(drink) {
+  getSelectedCocktail() {
+    console.log(drink)
     this.setState({
       drink: drink,
       hide: !this.state.hide
@@ -26,7 +27,7 @@ class MyCocktails extends React.Component {
         {this.state.hide ? (
           this.props.allDrinks.map((drink) => {
             return (
-              <div key={drink._id} onClick={(drink) => this.getSelectedCocktail(drink)}>
+              <div key={drink._id} onClick={() => this.getSelectedCocktail(drink)}>
                 <h1>My Cocktails</h1>
                 <h3>{drink.name}</h3>
                 <img src={drink.image} height="200px"></img>
