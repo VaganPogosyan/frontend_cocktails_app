@@ -137,66 +137,71 @@ class ShowCocktail extends React.Component {
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}
-                <label htmlFor="name"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="name"
                   id="name"
                   value={this.state.name}
                 />
                 {/* Image */}
-                <label htmlFor="image"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="image"
                   id="image"
                   value={this.state.image}
                 />
                 {/* Instructions */}
-                <label htmlFor="instructions"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="instructions"
                   id="instrictions"
                   value={this.state.instructions}
                 />
                 {/* Ingredients */}
-                <label htmlFor="ingredients"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="ingredients"
                   id="ingredients"
                   value={this.state.ingredients}
                 />
                 {/* Alcoholic */}
-                <label htmlFor="alcoholic"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="alcoholic"
                   id="alcoholic"
                   value={this.state.alcoholic}
                 />
                 {/* Measurements */}
-                <label htmlFor="measurements"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="measurements"
                   id="measurements"
                   value={this.state.measurements}
                 />
                 {/* Glassware */}
-                <label htmlFor="glassware"></label>
+
                 <input
+                  className="hide"
                   type="text"
                   name="glassware"
                   id="glassware"
                   value={this.state.glassware}
                 />
-                <input type="submit" value="Add to my list" />
+                <input className="love" type="submit" value="🤎" />
               </form>
             </div>
-
-            <div></div>
           </div>
         )}
         {/* back button */}
