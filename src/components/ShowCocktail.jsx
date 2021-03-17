@@ -22,6 +22,7 @@ class ShowCocktail extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
     this.handleAddDrinks = this.handleAddDrinks.bind(this);
+    // this.deleteDrink = this.deleteDrink.bind(this);
   }
 
   getDrinks() {
@@ -75,11 +76,22 @@ class ShowCocktail extends React.Component {
     });
   }
 
+  deleteDrink(id) {
+    fetch(baseURL + '/cocktails/' + id, {
+      method: 'DELETE'
+    }).then(response => {
+      const findIndex = this.state.allDrinks.findIndex(drink => drink._id === id);
+      const copyDrinks = [...this.state.allDrinks]
+      copyDrinks.splice(findIndex, 1);
+      this.setState({ allDrinks: copyDrinks })
+    })
+  }
+
   render() {
     return (
       <div>
         {this.state.showList ? (
-          <MyCocktails allDrinks={this.state.allDrinks} />
+          <MyCocktails allDrinks={this.state.allDrinks} deleteDrink={(id) => this.deleteDrink(id)} />
         ) : (
           <div>
             <h1>cocktails</h1>
