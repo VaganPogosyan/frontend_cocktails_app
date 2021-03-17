@@ -11,12 +11,9 @@ class App extends React.Component {
       searchURL: '',
       drinks: []
     }
-
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
   }
-
 
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value })
@@ -55,7 +52,7 @@ class App extends React.Component {
           />
         </form>
         <div>
-          <CocktailsSearchResults drinks={this.state.drinks} />
+          <CocktailsSearchResults drinks={this.state.drinks} handleAddDrinks={this.state.handleAddDrinks} />
         </div>
 
       </div>
