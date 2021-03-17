@@ -38,6 +38,7 @@ class ShowCocktail extends React.Component {
       allDrinks: [],
       drinks: [],
       showList: false,
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
