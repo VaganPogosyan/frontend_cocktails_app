@@ -1,28 +1,21 @@
 import React from 'react';
-import AddCocktail from './components/AddCocktail';
-import CocktailInfo from './components/CocktailInfo'
+import CocktailsSearchResults from './components/CocktailsSearchResults'
 
-
-let baseURL = "";
-
-if (process.env.NODE_ENV === "development") {
-  baseURL = "http://localhost:3003";
-} else {
-  baseURL = "you heroku backend url here";
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       baseURL: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+      drinkName: '',
       searchURL: '',
-      drinkName: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+
     this.handleChange = this.handleChange.bind(this)
-    this.handleAddCocktail = this.handleAddCocktail.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+
   }
+
 
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value })
@@ -33,36 +26,16 @@ class App extends React.Component {
     this.setState({
       searchURL: this.state.baseURL + this.state.drinkName
     }, () => {
-      // fetch request
       fetch(this.state.searchURL)
-        .then(response => {
-          return response.json()
-        }).then(json => this.setState({
+        .then(response => { return response.json() })
+        .then(json => this.setState({
           drinks: json.drinks,
-          drinkName: '',
-        }),
-          err => console.log(err))
+          drinkName: ''
+        }))
     })
+
   }
-  handleAddCocktail(event) {
-    event.preventDefault();
-    fetch(baseURL + "/cocktails", {
-      method: "POST",
-      body: JSON.stringify({ name: this.state.name, image: this.state.image }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((resJson) => {
-        this.props.handleAddHoliday(resJson);
-        this.setState({
-          name: "",
-          image: ""
-        });
-      })
-      .catch((error) => console.log({ Error: error }));
-  }
+
 
   render() {
     return (
@@ -71,7 +44,7 @@ class App extends React.Component {
           <label htmlFor="drinkName">label</label>
           <input
             id='drinkName'
-            type='search'
+            type='text'
             value={this.state.drinkName}
             onChange={this.handleChange}
           />
@@ -80,20 +53,24 @@ class App extends React.Component {
             value='Search'
           />
         </form>
-        {/* link to show search results in json format */}
-        <a href={this.state.searchURL}>{this.state.searchURL}</a>
-        {/* render search results */}
-
-        {(this.state.drinks)
-          ? <CocktailInfo drinks={this.state.drinks} handleAddCocktail={this.state.handleAddCocktail} handleChange={this.state.handleChange} />
-          : ''
-        }
-        {/* <DrinkInfo /> */}
-        {/* add to favorite list button */}
+        <div>
+          <CocktailsSearchResults drinks={this.state.drinks} />
+        </div>
 
       </div>
     )
   }
-};
+}
+
+
+
+
+
+
+
+
+
+
+
 
 export default App
