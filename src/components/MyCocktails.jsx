@@ -7,6 +7,7 @@ class MyCocktails extends React.Component {
     this.state = {
       name: "",
       image: "",
+      instructions: '',
       hide: true,
       drink: "",
     };

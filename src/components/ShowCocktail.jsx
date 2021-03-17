@@ -15,9 +15,11 @@ class ShowCocktail extends React.Component {
     this.state = {
       name: this.props.drink.strDrink,
       image: this.props.drink.strDrinkThumb,
+      instructions: this.props.drink.strInstructions,
       allDrinks: [],
       drinks: [],
       showList: false,
+
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
@@ -66,6 +68,7 @@ class ShowCocktail extends React.Component {
         this.setState({
           name: this.state.name,
           image: this.state.image,
+          instructions: this.state.instructions
         });
       })
       .catch((error) => console.log({ Error: error }));
@@ -116,6 +119,13 @@ class ShowCocktail extends React.Component {
                   name="image"
                   id="image"
                   value={this.state.image}
+                />
+                <label htmlFor="instructions"></label>
+                <input
+                  type="text"
+                  name="instructions"
+                  id="instructions"
+                  value={this.state.instructions}
                 />
                 <input type="submit" value="Add to my list" />
               </form>
