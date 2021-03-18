@@ -1,6 +1,5 @@
 import React from "react";
 import MyCocktails from "./MyCocktails";
-import UpdateCocktail from "./UpdateCocktail";
 
 let baseURL = "";
 
@@ -9,8 +8,7 @@ if (process.env.NODE_ENV === "development") {
 } else {
   baseURL = "you heroku backend url here";
 }
-
-class ShowCocktail extends React.Component {
+class UpdateCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,9 +41,9 @@ class ShowCocktail extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
     this.handleAddDrinks = this.handleAddDrinks.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     // this.deleteDrink = this.deleteDrink.bind(this);
   }
-
   getDrinks() {
     fetch(baseURL + "/cocktails")
       .then(
@@ -70,10 +68,15 @@ class ShowCocktail extends React.Component {
     console.log(this.state.allDrinks);
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value,
+    });
+  }
   handleSubmit(event) {
     event.preventDefault();
-    fetch(baseURL + "/cocktails", {
-      method: "POST",
+    fetch(baseURL + "/cocktails/" + this.props.id, {
+      method: "PUT",
       body: JSON.stringify({
         name: this.state.name,
         image: this.state.image,
@@ -105,30 +108,15 @@ class ShowCocktail extends React.Component {
     });
   }
 
-  deleteDrink(id) {
-    fetch(baseURL + "/cocktails/" + id, {
-      method: "DELETE",
-    }).then((response) => {
-      const findIndex = this.state.allDrinks.findIndex(
-        (drink) => drink._id === id
-      );
-      const copyDrinks = [...this.state.allDrinks];
-      copyDrinks.splice(findIndex, 1);
-      this.setState({ allDrinks: copyDrinks });
-    });
-  }
-
   render() {
     return (
       <div>
         {this.state.showList ? (
-          <MyCocktails
-            allDrinks={this.state.allDrinks}
-            deleteDrink={(id) => this.deleteDrink(id)}
-          />
+          <MyCocktails allDrinks={this.state.allDrinks} />
         ) : (
           <div>
             <h1>cocktails</h1>
+
             <h3>{this.props.drink.strDrink}</h3>
             <img
               src={this.props.drink.strDrinkThumb}
@@ -140,67 +128,74 @@ class ShowCocktail extends React.Component {
                 {/* Name */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="name"
                   id="name"
                   value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="Name"
                 />
                 {/* Image */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="image"
                   id="image"
                   value={this.state.image}
+                  onChange={this.handleChange}
+                  placeholder="Image"
                 />
                 {/* Instructions */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="instructions"
-                  id="instrictions"
+                  id="instructions"
                   value={this.state.instructions}
+                  onChange={this.handleChange}
+                  placeholder="Instructions"
                 />
                 {/* Ingredients */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="ingredients"
                   id="ingredients"
                   value={this.state.ingredients}
+                  onChange={this.handleChange}
+                  placeholder="Ingredients"
                 />
                 {/* Alcoholic */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="alcoholic"
                   id="alcoholic"
                   value={this.state.alcoholic}
+                  onChange={this.handleChange}
+                  placeholder="Alcoholic"
                 />
                 {/* Measurements */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="measurements"
                   id="measurements"
                   value={this.state.measurements}
+                  onChange={this.handleChange}
+                  placeholder="Measurements"
                 />
                 {/* Glassware */}
 
                 <input
-                  className="hide"
                   type="text"
                   name="glassware"
                   id="glassware"
                   value={this.state.glassware}
+                  onChange={this.handleChange}
+                  placeholder="Glassware"
                 />
-                <input className="love" type="submit" value="🤎" />
+                <input type="submit" value="Add" />
               </form>
             </div>
           </div>
@@ -209,4 +204,4 @@ class ShowCocktail extends React.Component {
     );
   }
 }
-export default ShowCocktail;
+export default UpdateCocktail;
