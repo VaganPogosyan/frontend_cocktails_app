@@ -28,7 +28,7 @@ class CocktailsSearchResults extends React.Component {
           <div>
             { this.state.hide ? (
               <div>
-                <Button variant="secondary" onClick={this.props.showMyList}>back</Button>
+                <Button variant="secondary" onClick={this.props.showMyList}>Back to Home</Button>
               </div>
             ) : (
               ""
@@ -36,6 +36,7 @@ class CocktailsSearchResults extends React.Component {
           </div>
           { this.state.hide ? 
             <div>
+              <p></p>
               <h2>Search Results</h2>
               <Row xs={2} sm={3} md={4} lg={5}>
                 {
