@@ -45,22 +45,6 @@ class ShowCocktail extends React.Component {
           ingredient: this.props.drink.strIngredient6,
           measurement: this.props.drink.strMeasure6,
         },
-        {
-          ingredient: this.props.drink.strIngredient7,
-          measurement: this.props.drink.strMeasure7,
-        },
-        {
-          ingredient: this.props.drink.strIngredient8,
-          measurement: this.props.drink.strMeasure8,
-        },
-        {
-          ingredient: this.props.drink.strIngredient9,
-          measurement: this.props.drink.strMeasure9,
-        },
-        {
-          ingredient: this.props.drink.strIngredient10,
-          measurement: this.props.drink.strMeasure10,
-        },
       ],
       ingredients: [
         this.props.drink.strIngredient1,
@@ -117,6 +101,11 @@ class ShowCocktail extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    this.state.ingredients.map((ingredient) => {
+      if (ingredient === null) {
+        ingredient = "";
+      }
+    });
     fetch(baseURL + "/cocktails", {
       method: "POST",
       body: JSON.stringify({

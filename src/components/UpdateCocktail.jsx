@@ -12,38 +12,55 @@ class UpdateCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.drink.strDrink,
-      image: this.props.drink.strDrinkThumb,
-      instructions: this.props.drink.strInstructions,
-      ingredients: [
-        this.props.drink.strIngredient1,
-        this.props.drink.strIngredient2,
-        this.props.drink.strIngredient3,
-        this.props.drink.strIngredient4,
-        this.props.drink.strIngredient5,
-        this.props.drink.strIngredient6,
-        this.props.drink.strIngredient7,
-        this.props.drink.strIngredient8,
-        this.props.drink.strIngredient9,
-        this.props.drink.strIngredient10,
+      name: this.props.theDrink.strDrink,
+      image: this.props.theDrink.strDrinkThumb,
+      instructions: this.props.theDrink.strInstructions,
+      ingredientsObjects: [
+        {
+          ingredient: this.props.theDrink.strIngredient1,
+          measurement: this.props.theDrink.strMeasure1,
+        },
+        {
+          ingredient: this.props.theDrink.strIngredient2,
+          measurement: this.props.theDrink.strMeasure2,
+        },
+        {
+          ingredient: this.props.theDrink.strIngredient3,
+          measurement: this.props.theDrink.strMeasure3,
+        },
+        {
+          ingredient: this.props.theDrink.strIngredient4,
+          measurement: this.props.theDrink.strMeasure4,
+        },
+        {
+          ingredient: this.props.theDrink.strIngredient5,
+          measurement: this.props.theDrink.strMeasure5,
+        },
       ],
-      measurements: [
-        this.props.drink.strMeasure1,
-        this.props.drink.strMeasure2,
-        this.props.drink.strMeasure3,
+
+      glassware: this.props.theDrink.strGlass,
+      alcoholic: this.props.theDrink.strAlcoholic,
+      ingredientArr: [
+        this.props.theDrink.strIngredient1 + " ",
+
+        " " + this.props.theDrink.strIngredient2 + " ",
+
+        " " + this.props.theDrink.strIngredient3 + " ",
+
+        " " + this.props.theDrink.strIngredient3 + " ",
+
+        " " + this.props.theDrink.strIngredient5 + " ",
       ],
-      glassware: this.props.drink.strGlass,
-      alcoholic: this.props.drink.strAlcoholic,
-      allDrinks: [],
-      drinks: [],
-      showList: false,
+      measurementArr: [
+        " " + this.props.theDrink.strMeasure1 + " ",
+
+        " " + this.props.theDrink.strMeasure2 + " ",
+
+        " " + this.props.theDrink.strMeasure3 + " ",
+      ],
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.getDrinks = this.getDrinks.bind(this);
-    this.handleAddDrinks = this.handleAddDrinks.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    // this.deleteDrink = this.deleteDrink.bind(this);
   }
+
   getDrinks() {
     fetch(baseURL + "/cocktails")
       .then(
@@ -116,12 +133,10 @@ class UpdateCocktail extends React.Component {
         ) : (
           <div>
             <button onClick={this.props.handleUpdate}>back</button>
-            <h3>{this.props.drink.strDrink}</h3>
-            <img
-              src={this.props.drink.strDrinkThumb}
-              alt="cocktail"
-              height="200px"
-            />
+            <h1>cocktails1</h1>
+
+            <h3>{this.state.name}</h3>
+            <img src={this.state.image} alt="cocktail" height="200px" />
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}
@@ -160,7 +175,7 @@ class UpdateCocktail extends React.Component {
                   type="text"
                   name="ingredients"
                   id="ingredients"
-                  value={this.state.ingredients}
+                  value={this.state.ingredientArr}
                   onChange={this.handleChange}
                   placeholder="Ingredients"
                 />
@@ -180,7 +195,7 @@ class UpdateCocktail extends React.Component {
                   type="text"
                   name="measurements"
                   id="measurements"
-                  value={this.state.measurements}
+                  value={this.state.measurementArr}
                   onChange={this.handleChange}
                   placeholder="Measurements"
                 />

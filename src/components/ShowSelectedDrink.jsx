@@ -34,22 +34,6 @@ class ShowSelectedDrink extends React.Component {
           ingredient: this.props.theDrink.strIngredient6,
           measurement: this.props.theDrink.strMeasure6,
         },
-        {
-          ingredient: this.props.theDrink.strIngredient7,
-          measurement: this.props.theDrink.strMeasure7,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient8,
-          measurement: this.props.theDrink.strMeasure8,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient9,
-          measurement: this.props.theDrink.strMeasure9,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient10,
-          measurement: this.props.theDrink.strMeasure10,
-        },
       ],
 
       glassware: this.props.theDrink.strGlass,

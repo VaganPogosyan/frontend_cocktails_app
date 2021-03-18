@@ -58,7 +58,7 @@ class MyCocktails extends React.Component {
 
         {this.state.showUpdate ? (
           <UpdateCocktail
-            drink={this.state.drink}
+            theDrink={this.state.theDrink}
             id={this.state.drink._id}
             handleUpdate={this.handleUpdate}
           />
