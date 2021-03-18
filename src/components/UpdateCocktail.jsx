@@ -1,4 +1,5 @@
 import React from "react";
+import MyCocktails from "./MyCocktails";
 
 let baseURL = "";
 
@@ -110,91 +111,95 @@ class UpdateCocktail extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <h1>cocktails</h1>
-          <h2>hello</h2>
-          <h3>{this.props.drink.strDrink}</h3>
-          <img
-            src={this.props.drink.strDrinkThumb}
-            alt="cocktail"
-            height="200px"
-          />
+        {this.state.showList ? (
+          <MyCocktails allDrinks={this.state.allDrinks} />
+        ) : (
           <div>
-            <form onSubmit={this.handleSubmit}>
-              {/* Name */}
+            <h1>cocktails</h1>
 
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={this.state.name}
-                onChange={this.handleChange}
-                placeholder="Name"
-              />
-              {/* Image */}
+            <h3>{this.props.drink.strDrink}</h3>
+            <img
+              src={this.props.drink.strDrinkThumb}
+              alt="cocktail"
+              height="200px"
+            />
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                {/* Name */}
 
-              <input
-                type="text"
-                name="image"
-                id="image"
-                value={this.state.image}
-                onChange={this.handleChange}
-                placeholder="Image"
-              />
-              {/* Instructions */}
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="Name"
+                />
+                {/* Image */}
 
-              <input
-                type="text"
-                name="instructions"
-                id="instructions"
-                value={this.state.instructions}
-                onChange={this.handleChange}
-                placeholder="Instructions"
-              />
-              {/* Ingredients */}
+                <input
+                  type="text"
+                  name="image"
+                  id="image"
+                  value={this.state.image}
+                  onChange={this.handleChange}
+                  placeholder="Image"
+                />
+                {/* Instructions */}
 
-              <input
-                type="text"
-                name="ingredients"
-                id="ingredients"
-                value={this.state.ingredients}
-                onChange={this.handleChange}
-                placeholder="Ingredients"
-              />
-              {/* Alcoholic */}
+                <input
+                  type="text"
+                  name="instructions"
+                  id="instructions"
+                  value={this.state.instructions}
+                  onChange={this.handleChange}
+                  placeholder="Instructions"
+                />
+                {/* Ingredients */}
 
-              <input
-                type="text"
-                name="alcoholic"
-                id="alcoholic"
-                value={this.state.alcoholic}
-                onChange={this.handleChange}
-                placeholder="Alcoholic"
-              />
-              {/* Measurements */}
+                <input
+                  type="text"
+                  name="ingredients"
+                  id="ingredients"
+                  value={this.state.ingredients}
+                  onChange={this.handleChange}
+                  placeholder="Ingredients"
+                />
+                {/* Alcoholic */}
 
-              <input
-                type="text"
-                name="measurements"
-                id="measurements"
-                value={this.state.measurements}
-                onChange={this.handleChange}
-                placeholder="Measurements"
-              />
-              {/* Glassware */}
+                <input
+                  type="text"
+                  name="alcoholic"
+                  id="alcoholic"
+                  value={this.state.alcoholic}
+                  onChange={this.handleChange}
+                  placeholder="Alcoholic"
+                />
+                {/* Measurements */}
 
-              <input
-                type="text"
-                name="glassware"
-                id="glassware"
-                value={this.state.glassware}
-                onChange={this.handleChange}
-                placeholder="Glassware"
-              />
-              <input type="submit" value="Add" />
-            </form>
+                <input
+                  type="text"
+                  name="measurements"
+                  id="measurements"
+                  value={this.state.measurements}
+                  onChange={this.handleChange}
+                  placeholder="Measurements"
+                />
+                {/* Glassware */}
+
+                <input
+                  type="text"
+                  name="glassware"
+                  id="glassware"
+                  value={this.state.glassware}
+                  onChange={this.handleChange}
+                  placeholder="Glassware"
+                />
+                <input type="submit" value="Add" />
+              </form>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }

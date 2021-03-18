@@ -10,10 +10,17 @@ class App extends React.Component {
       baseURL: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
       drinkName: '',
       searchURL: '',
-      drinks: []
+      drinks: [],
+      myDrinks: [],
+      showMyCocktailList: true,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.renderMyCocktails = this.renderMyCocktails.bind(this)
+  }
+
+  componentDidMount() {
+    this.renderMyCocktails()
   }
 
   handleChange(event) {
@@ -30,15 +37,34 @@ class App extends React.Component {
         .then(json => this.setState({
           drinks: json.drinks,
           drinkName: '',
+          showMyCocktailList: !this.state.showMyCocktailList
         }))
     })
-
   }
+
+
+  renderMyCocktails() {
+    fetch('http://localhost:3003/cocktails')
+      .then(
+        data => {
+          return data.json()
+        }, err => console.log(err)
+      )
+      .then(
+        (parsedData) => this.setState({ myDrinks: parsedData }),
+        (err) => console.log(err)
+      )
+    console.log(this.state.myDrinks)
+  }
+
 
 
   render() {
     return (
+
       <div>
+
+
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="drinkName">label</label>
           <input
@@ -53,24 +79,36 @@ class App extends React.Component {
           />
         </form>
 
-        <div>
-          <CocktailsSearchResults drinks={this.state.drinks} handleAddDrinks={this.state.handleAddDrinks} />
 
-        </div>
+        {
+          this.state.showMyCocktailList ?
+            <div>
+              <h2>My Favorite Cocktails</h2>
+              {
+                this.state.myDrinks.map(myDrink => {
+                  return (
+
+                    <div>
+                      <h3>{myDrink.name}</h3>
+                      <img src={myDrink.image} height="200px"></img>
+                    </div>
+                  )
+                })
+              }
+            </div>
+            :
+
+            <CocktailsSearchResults drinks={this.state.drinks} handleAddDrinks={this.state.handleAddDrinks} />
+        }
+
+
+
+
 
       </div>
     )
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
