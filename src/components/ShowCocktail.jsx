@@ -23,43 +23,43 @@ class ShowCocktail extends React.Component {
       ingredientsObjects: [
         {
           ingredient: this.props.drink.strIngredient1,
-          measurement: this.props.drink.strMeasure1
+          measurement: this.props.drink.strMeasure1,
         },
         {
           ingredient: this.props.drink.strIngredient2,
-          measurement: this.props.drink.strMeasure2
+          measurement: this.props.drink.strMeasure2,
         },
         {
           ingredient: this.props.drink.strIngredient3,
-          measurement: this.props.drink.strMeasure3
+          measurement: this.props.drink.strMeasure3,
         },
         {
           ingredient: this.props.drink.strIngredient4,
-          measurement: this.props.drink.strMeasure4
+          measurement: this.props.drink.strMeasure4,
         },
         {
           ingredient: this.props.drink.strIngredient5,
-          measurement: this.props.drink.strMeasure5
+          measurement: this.props.drink.strMeasure5,
         },
         {
           ingredient: this.props.drink.strIngredient6,
-          measurement: this.props.drink.strMeasure6
+          measurement: this.props.drink.strMeasure6,
         },
         {
           ingredient: this.props.drink.strIngredient7,
-          measurement: this.props.drink.strMeasure7
+          measurement: this.props.drink.strMeasure7,
         },
         {
           ingredient: this.props.drink.strIngredient8,
-          measurement: this.props.drink.strMeasure8
+          measurement: this.props.drink.strMeasure8,
         },
         {
           ingredient: this.props.drink.strIngredient9,
-          measurement: this.props.drink.strMeasure9
+          measurement: this.props.drink.strMeasure9,
         },
         {
           ingredient: this.props.drink.strIngredient10,
-          measurement: this.props.drink.strMeasure10
+          measurement: this.props.drink.strMeasure10,
         },
       ],
       ingredients: [
@@ -175,7 +175,7 @@ class ShowCocktail extends React.Component {
             allDrinks={this.state.allDrinks}
             deleteDrink={(id) => this.deleteDrink(id)}
             backToSearchList={this.backToSearchList}
-            drink={ this.state.drink }
+            drink={this.state.drink}
           />
         ) : (
           <div>
@@ -185,9 +185,9 @@ class ShowCocktail extends React.Component {
             <img src={this.state.image} alt="cocktail" height="200px" />
             <p></p>
             <h4>Instructions</h4>
-            <p>{ this.state.instructions }</p>
+            <p>{this.state.instructions}</p>
             <h4>Glassware</h4>
-            <p>{ this.state.glassware }</p>
+            <p>{this.state.glassware}</p>
             <h4>Ingredients</h4>
             <Table>
               <thead>
@@ -195,20 +195,14 @@ class ShowCocktail extends React.Component {
                 <th>ingredient</th>
               </thead>
               <tbody>
-                {
-                  this.state.ingredientsObjects.map( (ingredient) => {
-                    return (
-                      <tr>
-                        <td>
-                          { ingredient.measurement }
-                        </td>
-                        <td>
-                          { ingredient.ingredient }
-                        </td>
-                      </tr>
-                    );
-                  })
-                }
+                {this.state.ingredientsObjects.map((ingredient) => {
+                  return (
+                    <tr>
+                      <td>{ingredient.measurement}</td>
+                      <td>{ingredient.ingredient}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </Table>
             <p></p>
