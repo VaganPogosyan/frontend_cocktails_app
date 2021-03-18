@@ -4,6 +4,7 @@ class ShowSelectedDrink extends React.Component {
   render() {
     return (
       <div>
+        <button onClick={this.props.showAllMyDrinks}>back</button>
         <h2>{this.props.drink.name}</h2>
         <img src={this.props.drink.image} height="200px"></img>
         <p>Type of cocktail: {this.props.drink.alcoholic}</p>

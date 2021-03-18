@@ -18,6 +18,8 @@ class MyCocktails extends React.Component {
       showUpdate: false,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.backToIndex = this.backToIndex.bind(this);
+    this.showAllMyDrinks = this.showAllMyDrinks.bind(this);
   }
 
   getSelectedCocktail(drink) {
@@ -27,16 +29,30 @@ class MyCocktails extends React.Component {
     });
     console.log(this.state.drink);
   }
+  showAllMyDrinks() {
+    this.setState({
+      hide: !this.setState.hide,
+    });
+  }
 
   handleUpdate() {
     this.setState({
       showUpdate: !this.state.showUpdate,
     });
   }
+  backToIndex() {
+    window.location.reload();
+  }
 
   render() {
     return (
       <div>
+        {this.state.hide ? (
+          <button onClick={this.backToIndex}>home</button>
+        ) : (
+          ""
+        )}
+
         {this.state.showUpdate ? (
           <UpdateCocktail
             drink={this.state.drink}
@@ -45,7 +61,6 @@ class MyCocktails extends React.Component {
           />
         ) : (
           <div>
-            <button onClick={this.backToSearchList}>back</button>
             {this.state.hide ? (
               this.props.allDrinks.map((drink) => {
                 return (
@@ -66,7 +81,10 @@ class MyCocktails extends React.Component {
               })
             ) : (
               <div>
-                <ShowSelectedDrink drink={this.state.drink} />
+                <ShowSelectedDrink
+                  drink={this.state.drink}
+                  showAllMyDrinks={this.showAllMyDrinks}
+                />
               </div>
             )}
           </div>
