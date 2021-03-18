@@ -1,6 +1,6 @@
 import React from 'react';
 import CocktailsSearchResults from './components/CocktailsSearchResults'
-import MyCocktails from './components/MyCocktails';
+
 
 
 class App extends React.Component {
@@ -13,6 +13,7 @@ class App extends React.Component {
       drinks: [],
       myDrinks: [],
       showMyCocktailList: true,
+
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -100,11 +101,6 @@ class App extends React.Component {
 
             <CocktailsSearchResults drinks={this.state.drinks} handleAddDrinks={this.state.handleAddDrinks} />
         }
-
-
-
-
-
       </div>
     )
   }
