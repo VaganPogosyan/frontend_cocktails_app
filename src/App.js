@@ -9,11 +9,18 @@ class App extends React.Component {
       baseURL: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
       drinkName: '',
       searchURL: '',
-      drinks: []
+      drinks: [],
+      // myDrinks: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    // this.renderMyCocktails = this.renderMyCocktails.bind(this)
   }
+
+  // componentDidMount() {
+  //   console.log(this.state.myDrinks)
+  //   this.renderMyCocktails
+  // }
 
   handleChange(event) {
     this.setState({ [event.target.id]: event.target.value })
@@ -31,13 +38,33 @@ class App extends React.Component {
           drinkName: '',
         }))
     })
-
   }
+
+  // renderMyCocktails() {
+  //   fetch('http://localhost:3003/cocktails')
+  //     .then(
+  //       data => {
+  //         return data.json()
+  //       }, err => console.log(err)
+  //     )
+  //     .then(
+  //       (parsedData) => this.setState({ myDrinks: parsedData }),
+  //       (err) => console.log(err)
+  //     )
+  // }
+
 
 
   render() {
     return (
+
       <div>
+        {/* <div>{
+          this.state.myDrinks.map(myDrink => {
+            return <h1>{myDrink.name}</h1>
+          })
+        }
+        </div> */}
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="drinkName">label</label>
           <input
@@ -59,15 +86,6 @@ class App extends React.Component {
     )
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 
