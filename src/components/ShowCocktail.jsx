@@ -2,7 +2,7 @@ import React from "react";
 import MyCocktails from "./MyCocktails";
 import UpdateCocktail from "./UpdateCocktail";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Button, Table } from 'react-bootstrap'
+import { Container, Button, Table, Form } from 'react-bootstrap'
 
 let baseURL = "";
 
@@ -179,7 +179,8 @@ class ShowCocktail extends React.Component {
           />
         ) : (
           <div>
-            <button onClick={this.props.getCocktail}>back</button>
+            <Button variant="secondary" onClick={this.props.getCocktail}>Back to Search Results</Button>
+            <p></p>
             <h1>{ this.state.name }</h1>
             <img src={this.state.image} alt="cocktail" height="200px" />
             <p></p>
@@ -210,16 +211,6 @@ class ShowCocktail extends React.Component {
                 }
               </tbody>
             </Table>
-            {
-              this.state.ingredientsObjects.map( (ingredient) => {
-                return (
-                  <div>
-                    { ingredient.ingredient }
-                    { ingredient.measurement }
-                  </div>
-                );
-              })
-            }
             <p></p>
             <div>
               <form onSubmit={this.handleSubmit}>
