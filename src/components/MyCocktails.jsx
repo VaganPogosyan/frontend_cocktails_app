@@ -17,6 +17,7 @@ class MyCocktails extends React.Component {
       drink: "",
       showUpdate: false,
     };
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   getSelectedCocktail(drink) {
@@ -37,9 +38,14 @@ class MyCocktails extends React.Component {
     return (
       <div>
         {this.state.showUpdate ? (
-          <UpdateCocktail drink={this.state.drink} id={this.state.drink._id} />
+          <UpdateCocktail
+            drink={this.state.drink}
+            id={this.state.drink._id}
+            handleUpdate={this.handleUpdate}
+          />
         ) : (
           <div>
+            <button onClick={this.backToSearchList}>back</button>
             {this.state.hide ? (
               this.props.allDrinks.map((drink) => {
                 return (
