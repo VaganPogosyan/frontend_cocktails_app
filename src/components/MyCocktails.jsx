@@ -25,29 +25,6 @@ class MyCocktails extends React.Component {
     });
     console.log(this.state.drink);
   }
-  // updateDrink(drink) {
-  //   console.log(drink);
-
-  //   fetch(baseURL + '/cocktails/' + drink._id, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //        name: this.state.name,
-  //       image: this.state.image,
-  //       instructions: this.state.instructions,
-  //       ingredients: this.state.ingredients,
-  //       measurements: this.state.measurements,
-  //       glassware: this.state.glassware,
-  //       alcoholic: this.state.alcoholic
-  //     })
-  //   }).then(res => res.json())
-  //   .then(resJson => {
-  //     console.log(resJson);
-  //     const copyDrinks = [...this.state.drinks];
-  //     const findIndex = this.state.drinks.findIndex(drink => drink._id === resJson._id);
-  //     copyDrinks[findIndex] = resJson;
 
   render() {
     return (

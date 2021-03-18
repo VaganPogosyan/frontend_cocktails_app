@@ -204,7 +204,6 @@ class ShowCocktail extends React.Component {
             </div>
           </div>
         )}
-        {/* back button */}
       </div>
     );
   }
