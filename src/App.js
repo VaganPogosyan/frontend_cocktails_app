@@ -1,6 +1,8 @@
 import React from 'react';
 import CocktailsSearchResults from './components/CocktailsSearchResults'
 import MyCocktails from './components/MyCocktails';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Form, Button, Card, Row } from 'react-bootstrap'
 
 
 class App extends React.Component {
@@ -61,12 +63,22 @@ class App extends React.Component {
 
   render() {
     return (
+      <Container fluid="md">
+      
 
-      <div>
 
-
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="drinkName">label</label>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label htmlFor="drinkName">Search API to add drink</Form.Label>
+            <Form.Control
+              id='drinkName'
+              type='text'
+              value={this.state.drinkName}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">Search</Button>
+          {/* <label htmlFor="drinkName">label</label>
           <input
             id='drinkName'
             type='text'
@@ -76,25 +88,35 @@ class App extends React.Component {
           <input
             type='submit'
             value='Search'
-          />
-        </form>
+          /> */}
+        </Form>
 
 
         {
           this.state.showMyCocktailList ?
             <div>
               <h2>My Favorite Cocktails</h2>
+              <Row xs={2} sm={3} md={4} lg={5}>
               {
                 this.state.myDrinks.map(myDrink => {
                   return (
 
                     <div>
-                      <h3>{myDrink.name}</h3>
-                      <img src={myDrink.image} height="200px"></img>
+                      {/* <div>
+                        <h3>{myDrink.name}</h3>
+                        <img src={myDrink.image} height="200px"></img>
+                      </div> */}
+
+                          <Card> 
+                            <Card.Img variant="top" src={myDrink.image}/>
+                            <Card.Title>{myDrink.name}</Card.Title>
+                          </Card>
+
                     </div>
                   )
                 })
               }
+            </Row>
             </div>
             :
 
@@ -105,7 +127,8 @@ class App extends React.Component {
 
 
 
-      </div>
+      
+      </Container>
     )
   }
 }
