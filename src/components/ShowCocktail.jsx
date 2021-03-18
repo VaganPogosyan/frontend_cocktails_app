@@ -184,30 +184,8 @@ class ShowCocktail extends React.Component {
             <h1>{ this.state.name }</h1>
             <img src={this.state.image} alt="cocktail" height="200px" />
             <p></p>
-            <h4>Instructions</h4>
-            <p>{this.state.instructions}</p>
-            <h4>Glassware</h4>
-            <p>{this.state.glassware}</p>
-            <h4>Ingredients</h4>
-            <Table>
-              <thead>
-                <th>measurement</th>
-                <th>ingredient</th>
-              </thead>
-              <tbody>
-                {this.state.ingredientsObjects.map((ingredient) => {
-                  return (
-                    <tr>
-                      <td>{ingredient.measurement}</td>
-                      <td>{ingredient.ingredient}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-            <p></p>
             <div>
-              <form onSubmit={this.handleSubmit}>
+              <Form onSubmit={this.handleSubmit}>
                 {/* Name */}
 
                 <input
@@ -271,9 +249,33 @@ class ShowCocktail extends React.Component {
                   id="glassware"
                   value={this.state.glassware}
                 />
-                <input className="love" type="submit" value="🤎" />
-              </form>
+                <Button variant="success" className="love" type="submit" value="🤎" >Add to My Cocktails</Button>
+              </Form>
             </div>
+            <p></p>
+            <h4>Instructions</h4>
+            <p>{this.state.instructions}</p>
+            <h4>Glassware</h4>
+            <p>{this.state.glassware}</p>
+            <h4>Ingredients</h4>
+            <Table>
+              <thead>
+                <th>measurement</th>
+                <th>ingredient</th>
+              </thead>
+              <tbody>
+                {this.state.ingredientsObjects.map((ingredient) => {
+                  return (
+                    <tr>
+                      <td>{ingredient.measurement}</td>
+                      <td>{ingredient.ingredient}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+            <p></p>
+            
           </div>
         )}
       </Container>

@@ -59,14 +59,35 @@ class ShowSelectedDrink extends React.Component {
   render() {
     return (
       <Container>
-        <button onClick={this.props.showAllMyDrinks}>back</button>
+        <p></p>
+        <Button variant="secondary" onClick={this.props.showAllMyDrinks}>back to My Cocktails</Button>
+        <p></p>
         <h2>{this.state.name}</h2>
         <img src={this.state.image} height="200px"></img>
-        <p>Type of cocktail: {this.state.alcoholic}</p>
-        <p>Ingredients: {this.state.ingredientsObjects[0].ingredient}</p>
-        <p>Measurements: {this.state.ingredientsObjects[0].measurement}</p>
-        <p>Instructions: {this.state.instructions}</p>
-        <p>Glassware: {this.state.glassware}</p>
+        <p></p>
+        <h4>Type of cocktail</h4>
+        <p>{this.state.alcoholic}</p>
+        <h4>Instructions</h4>
+        <p>{this.state.instructions}</p>
+        <h4>Glassware</h4>
+        <p>{this.state.glassware}</p>
+        <h4>Ingredients</h4>
+        <Table>
+          <thead>
+              <th>measurement</th>
+              <th>ingredient</th>
+          </thead>
+          <tbody>
+            {this.state.ingredientsObjects.map((ingredient) => {
+              return (
+                <tr>
+                  <td>{ingredient.measurement}</td>
+                  <td>{ingredient.ingredient}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
         {console.log(this.state.ingredientsObjects[0])}
       </Container>
     );
