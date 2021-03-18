@@ -1,6 +1,8 @@
 import React from "react";
 import MyCocktails from "./MyCocktails";
 import UpdateCocktail from "./UpdateCocktail";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Button, Table } from 'react-bootstrap'
 
 let baseURL = "";
 
@@ -14,9 +16,52 @@ class ShowCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      drink: this.props.drink,
       name: this.props.drink.strDrink,
       image: this.props.drink.strDrinkThumb,
       instructions: this.props.drink.strInstructions,
+      ingredientsObjects: [
+        {
+          ingredient: this.props.drink.strIngredient1,
+          measurement: this.props.drink.strMeasure1
+        },
+        {
+          ingredient: this.props.drink.strIngredient2,
+          measurement: this.props.drink.strMeasure2
+        },
+        {
+          ingredient: this.props.drink.strIngredient3,
+          measurement: this.props.drink.strMeasure3
+        },
+        {
+          ingredient: this.props.drink.strIngredient4,
+          measurement: this.props.drink.strMeasure4
+        },
+        {
+          ingredient: this.props.drink.strIngredient5,
+          measurement: this.props.drink.strMeasure5
+        },
+        {
+          ingredient: this.props.drink.strIngredient6,
+          measurement: this.props.drink.strMeasure6
+        },
+        {
+          ingredient: this.props.drink.strIngredient7,
+          measurement: this.props.drink.strMeasure7
+        },
+        {
+          ingredient: this.props.drink.strIngredient8,
+          measurement: this.props.drink.strMeasure8
+        },
+        {
+          ingredient: this.props.drink.strIngredient9,
+          measurement: this.props.drink.strMeasure9
+        },
+        {
+          ingredient: this.props.drink.strIngredient10,
+          measurement: this.props.drink.strMeasure10
+        },
+      ],
       ingredients: [
         this.props.drink.strIngredient1,
         this.props.drink.strIngredient2,
@@ -124,20 +169,58 @@ class ShowCocktail extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         {this.state.showList ? (
           <MyCocktails
             allDrinks={this.state.allDrinks}
             deleteDrink={(id) => this.deleteDrink(id)}
             backToSearchList={this.backToSearchList}
+            drink={ this.state.drink }
           />
         ) : (
           <div>
             <button onClick={this.props.getCocktail}>back</button>
-            <h1>cocktails</h1>
+            <h1>{ this.state.name }</h1>
             <img src={this.state.image} alt="cocktail" height="200px" />
-            <p>Ingredients: {this.state.ingredients}</p>
-            <p>Instructions: {this.state.instructions}</p>
+            <p></p>
+            <h4>Instructions</h4>
+            <p>{ this.state.instructions }</p>
+            <h4>Glassware</h4>
+            <p>{ this.state.glassware }</p>
+            <h4>Ingredients</h4>
+            <Table>
+              <thead>
+                <th>measurement</th>
+                <th>ingredient</th>
+              </thead>
+              <tbody>
+                {
+                  this.state.ingredientsObjects.map( (ingredient) => {
+                    return (
+                      <tr>
+                        <td>
+                          { ingredient.measurement }
+                        </td>
+                        <td>
+                          { ingredient.ingredient }
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
+              </tbody>
+            </Table>
+            {
+              this.state.ingredientsObjects.map( (ingredient) => {
+                return (
+                  <div>
+                    { ingredient.ingredient }
+                    { ingredient.measurement }
+                  </div>
+                );
+              })
+            }
+            <p></p>
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}
@@ -164,7 +247,7 @@ class ShowCocktail extends React.Component {
                   className="hide"
                   type="text"
                   name="instructions"
-                  id="instrictions"
+                  id="instructions"
                   value={this.state.instructions}
                 />
                 {/* Ingredients */}
@@ -208,7 +291,7 @@ class ShowCocktail extends React.Component {
             </div>
           </div>
         )}
-      </div>
+      </Container>
     );
   }
 }

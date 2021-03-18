@@ -1,9 +1,11 @@
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Button, Card, Row, Table } from 'react-bootstrap'
 
 class ShowSelectedDrink extends React.Component {
   render() {
     return (
-      <div>
+      <Container>
         <button onClick={this.props.showAllMyDrinks}>back</button>
         <h2>{this.props.drink.name}</h2>
         <img src={this.props.drink.image} height="200px"></img>
@@ -12,7 +14,7 @@ class ShowSelectedDrink extends React.Component {
         <p>Measurements: {this.props.drink.measurements}</p>
         <p>Instructions: {this.props.drink.instructions}</p>
         <p>Glassware: {this.props.drink.glassware}</p>
-      </div>
+      </Container>
     );
   }
 }

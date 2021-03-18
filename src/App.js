@@ -71,38 +71,11 @@ class App extends React.Component {
   render() {
     return (
       <Container fluid="md">
-      
-
-
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Label htmlFor="drinkName">Search API to add drink</Form.Label>
-            <Form.Control
-              id='drinkName'
-              type='text'
-              value={this.state.drinkName}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">Search</Button>
-          {/* <label htmlFor="drinkName">label</label>
-          <input
-            id='drinkName'
-            type='text'
-            value={this.state.drinkName}
-            onChange={this.handleChange}
-          />
-          <input
-            type='submit'
-            value='Search'
-          /> */}
-        </Form>
-
 
         {
           this.state.showMyCocktailList ?
             <div>
-              <h2>My Favorite Cocktails</h2>
+              <h1>My Favorite Cocktails</h1>
               <Row xs={2} sm={3} md={4} lg={5}>
               {
                 this.state.myDrinks.map(myDrink => {
@@ -135,11 +108,29 @@ class App extends React.Component {
             </div>
         }
 
-
-
-
-
-      
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label htmlFor="drinkName">Search API to add drink</Form.Label>
+            <Form.Control
+              id='drinkName'
+              type='text'
+              value={this.state.drinkName}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">Search</Button>
+          {/* <label htmlFor="drinkName">label</label>
+          <input
+            id='drinkName'
+            type='text'
+            value={this.state.drinkName}
+            onChange={this.handleChange}
+          />
+          <input
+            type='submit'
+            value='Search'
+          /> */}
+        </Form>
       </Container>
     )
   }
