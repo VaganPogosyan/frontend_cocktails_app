@@ -43,7 +43,7 @@ class ShowCocktail extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getDrinks = this.getDrinks.bind(this);
     this.handleAddDrinks = this.handleAddDrinks.bind(this);
-    // this.deleteDrink = this.deleteDrink.bind(this);
+    this.backToSearchList = this.backToSearchList.bind(this);
   }
 
   getDrinks() {
@@ -100,6 +100,10 @@ class ShowCocktail extends React.Component {
       .catch((error) => console.log({ Error: error }));
     console.log("submit");
     this.getDrinks();
+    this.backToSearchList();
+  }
+
+  backToSearchList() {
     this.setState({
       showList: !this.state.showList,
     });
@@ -125,16 +129,15 @@ class ShowCocktail extends React.Component {
           <MyCocktails
             allDrinks={this.state.allDrinks}
             deleteDrink={(id) => this.deleteDrink(id)}
+            backToSearchList={this.backToSearchList}
           />
         ) : (
           <div>
+            <button onClick={this.props.getCocktail}>back</button>
             <h1>cocktails</h1>
-            <h3>{this.props.drink.strDrink}</h3>
-            <img
-              src={this.props.drink.strDrinkThumb}
-              alt="cocktail"
-              height="200px"
-            />
+            <img src={this.state.image} alt="cocktail" height="200px" />
+            <p>Ingredients: {this.state.ingredients}</p>
+            <p>Instructions: {this.state.instructions}</p>
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}

@@ -18,6 +18,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.renderMyCocktails = this.renderMyCocktails.bind(this)
+    this.showMyList = this.showMyList.bind(this)
   }
 
   componentDidMount() {
@@ -38,8 +39,13 @@ class App extends React.Component {
         .then(json => this.setState({
           drinks: json.drinks,
           drinkName: '',
-          showMyCocktailList: !this.state.showMyCocktailList
         }))
+    })
+    this.showMyList()
+  }
+  showMyList() {
+    this.setState({
+      showMyCocktailList: !this.state.showMyCocktailList
     })
   }
 
@@ -98,8 +104,13 @@ class App extends React.Component {
               }
             </div>
             :
-
-            <CocktailsSearchResults drinks={this.state.drinks} handleAddDrinks={this.state.handleAddDrinks} />
+            <div>
+              <CocktailsSearchResults
+                drinks={this.state.drinks}
+                handleAddDrinks={this.state.handleAddDrinks}
+                showMyList={this.showMyList}
+              />
+            </div>
         }
       </div>
     )

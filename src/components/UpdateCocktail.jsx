@@ -115,8 +115,7 @@ class UpdateCocktail extends React.Component {
           <MyCocktails allDrinks={this.state.allDrinks} />
         ) : (
           <div>
-            <h1>cocktails</h1>
-
+            <button onClick={this.props.handleUpdate}>back</button>
             <h3>{this.props.drink.strDrink}</h3>
             <img
               src={this.props.drink.strDrinkThumb}

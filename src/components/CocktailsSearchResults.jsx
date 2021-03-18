@@ -1,7 +1,5 @@
 import React from "react";
-import MyCocktails from "./MyCocktails";
 import ShowCocktail from "./ShowCocktail";
-import UpdateCocktail from "./UpdateCocktail";
 
 class CocktailsSearchResults extends React.Component {
   constructor(props) {
@@ -25,6 +23,13 @@ class CocktailsSearchResults extends React.Component {
   render() {
     return (
       <div>
+        <div>
+          {this.state.hide ? (
+            <button onClick={this.props.showMyList}>back</button>
+          ) : (
+            ""
+          )}
+        </div>
         {this.state.hide ? (
           this.props.drinks.map((drink) => {
             return (
@@ -35,9 +40,10 @@ class CocktailsSearchResults extends React.Component {
             );
           })
         ) : (
-          <div>
-            <ShowCocktail drink={this.state.drink} />
-          </div>
+          <ShowCocktail
+            drink={this.state.drink}
+            getCocktail={() => this.getCocktail(this.state.drink)}
+          />
         )}
       </div>
     );
