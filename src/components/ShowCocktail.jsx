@@ -143,7 +143,6 @@ class ShowCocktail extends React.Component {
     this.setState({
       showList: !this.state.showList,
     });
-    window.location.reload();
   }
 
   deleteDrink(id) {
