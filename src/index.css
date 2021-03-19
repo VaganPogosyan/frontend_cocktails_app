@@ -1,11 +1,9 @@
-
-
-
-
-
-
-
-
+* {
+  padding: 2px;
+}
+input {
+  width: 200px;
+}
 .hide {
   display: none;
 }

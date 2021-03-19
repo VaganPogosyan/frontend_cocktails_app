@@ -6,45 +6,22 @@ class ShowSelectedDrink extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.theDrink.strDrink,
-      image: this.props.theDrink.strDrinkThumb,
-      instructions: this.props.theDrink.strInstructions,
-      ingredientsObjects: [
-        {
-          ingredient: this.props.theDrink.strIngredient1,
-          measurement: this.props.theDrink.strMeasure1,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient2,
-          measurement: this.props.theDrink.strMeasure2,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient3,
-          measurement: this.props.theDrink.strMeasure3,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient4,
-          measurement: this.props.theDrink.strMeasure4,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient5,
-          measurement: this.props.theDrink.strMeasure5,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient6,
-          measurement: this.props.theDrink.strMeasure6,
-        },
-      ],
-
-      glassware: this.props.theDrink.strGlass,
-      alcoholic: this.props.theDrink.strAlcoholic,
+      name: this.props.drink.name,
+      image: this.props.drink.image,
+      instructions: this.props.drink.instructions,
+      ingredients: this.props.drink.ingredients,
+      measurements: this.props.drink.measurements,
+      glassware: this.props.drink.glassware,
+      alcoholic: this.props.drink.alcoholic,
     };
   }
   render() {
     return (
       <Container>
         <p></p>
-        <Button variant="secondary" onClick={this.props.showAllMyDrinks}>back to My Cocktails</Button>
+        <Button variant="secondary" onClick={this.props.showAllMyDrinks}>
+          back to My Cocktails
+        </Button>
         <p></p>
         <h2>{this.state.name}</h2>
         <img src={this.state.image} height="200px"></img>
@@ -58,21 +35,16 @@ class ShowSelectedDrink extends React.Component {
         <h4>Ingredients</h4>
         <Table>
           <thead>
-              <th>measurement</th>
-              <th>ingredient</th>
+            <th>measurement</th>
+            <th>ingredient</th>
           </thead>
           <tbody>
-            {this.state.ingredientsObjects.map((ingredient) => {
-              return (
-                <tr>
-                  <td>{ingredient.measurement}</td>
-                  <td>{ingredient.ingredient}</td>
-                </tr>
-              );
-            })}
+            <tr>
+              <td>{this.state.measurements}</td>
+              <td>{this.state.ingredients}</td>
+            </tr>
           </tbody>
         </Table>
-        {console.log(this.state.ingredientsObjects[0])}
       </Container>
     );
   }
