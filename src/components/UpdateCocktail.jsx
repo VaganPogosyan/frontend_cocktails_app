@@ -2,63 +2,34 @@ import React from "react";
 import MyCocktails from "./MyCocktails";
 
 let baseURL = "";
+let id = "";
 
 if (process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:3003";
 } else {
-  baseURL = "you heroku backend url here";
+  baseURL = "https://backend-cocktails.herokuapp.com";
 }
 class UpdateCocktail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.theDrink.strDrink,
-      image: this.props.theDrink.strDrinkThumb,
-      instructions: this.props.theDrink.strInstructions,
-      ingredientsObjects: [
-        {
-          ingredient: this.props.theDrink.strIngredient1,
-          measurement: this.props.theDrink.strMeasure1,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient2,
-          measurement: this.props.theDrink.strMeasure2,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient3,
-          measurement: this.props.theDrink.strMeasure3,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient4,
-          measurement: this.props.theDrink.strMeasure4,
-        },
-        {
-          ingredient: this.props.theDrink.strIngredient5,
-          measurement: this.props.theDrink.strMeasure5,
-        },
-      ],
-
-      glassware: this.props.theDrink.strGlass,
-      alcoholic: this.props.theDrink.strAlcoholic,
-      ingredientArr: [
-        this.props.theDrink.strIngredient1 + " ",
-
-        " " + this.props.theDrink.strIngredient2 + " ",
-
-        " " + this.props.theDrink.strIngredient3 + " ",
-
-        " " + this.props.theDrink.strIngredient3 + " ",
-
-        " " + this.props.theDrink.strIngredient5 + " ",
-      ],
-      measurementArr: [
-        " " + this.props.theDrink.strMeasure1 + " ",
-
-        " " + this.props.theDrink.strMeasure2 + " ",
-
-        " " + this.props.theDrink.strMeasure3 + " ",
-      ],
+      name: this.props.drink.name,
+      image: this.props.drink.image,
+      instructions: this.props.drink.instructions,
+      ingredients: this.props.drink.ingredients,
+      measurements: this.props.drink.measurements,
+      alcoholic: this.props.drink.alcoholic,
+      glassware: this.props.drink.glassware,
+      id: this.props.drink._id,
+      allDrinks: [],
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleAddDrinks = this.handleAddDrinks.bind(this);
+    this.getDrinks = this.getDrinks.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  componentDidMount() {
+    this.getDrinks();
   }
 
   getDrinks() {
@@ -82,7 +53,6 @@ class UpdateCocktail extends React.Component {
     this.setState({
       allDrinks: copyDrinks,
     });
-    console.log(this.state.allDrinks);
   }
 
   handleChange(event) {
@@ -91,8 +61,9 @@ class UpdateCocktail extends React.Component {
     });
   }
   handleSubmit(event) {
+    id = this.state.id;
     event.preventDefault();
-    fetch(baseURL + "/cocktails/" + this.props.id, {
+    fetch(baseURL + "/cocktails/" + id, {
       method: "PUT",
       body: JSON.stringify({
         name: this.state.name,
@@ -115,6 +86,9 @@ class UpdateCocktail extends React.Component {
           image: "",
           instructions: "",
           ingredients: "",
+          measurements: "",
+          alcoholic: "",
+          glassware: "",
         });
       })
       .catch((error) => console.log({ Error: error }));
@@ -133,10 +107,9 @@ class UpdateCocktail extends React.Component {
         ) : (
           <div>
             <button onClick={this.props.handleUpdate}>back</button>
-            <h1>cocktails1</h1>
 
-            <h3>{this.state.name}</h3>
-            <img src={this.state.image} alt="cocktail" height="200px" />
+            <h3>{this.props.drink.name}</h3>
+            <img src={this.props.drink.image} alt="cocktail" height="200px" />
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}
@@ -175,7 +148,7 @@ class UpdateCocktail extends React.Component {
                   type="text"
                   name="ingredients"
                   id="ingredients"
-                  value={this.state.ingredientArr}
+                  value={this.state.ingredients}
                   onChange={this.handleChange}
                   placeholder="Ingredients"
                 />
@@ -195,7 +168,7 @@ class UpdateCocktail extends React.Component {
                   type="text"
                   name="measurements"
                   id="measurements"
-                  value={this.state.measurementArr}
+                  value={this.state.measurements}
                   onChange={this.handleChange}
                   placeholder="Measurements"
                 />

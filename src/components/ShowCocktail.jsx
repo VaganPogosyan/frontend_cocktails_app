@@ -1,15 +1,15 @@
 import React from "react";
 import MyCocktails from "./MyCocktails";
 import UpdateCocktail from "./UpdateCocktail";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Button, Table, Form } from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Button, Table, Form } from "react-bootstrap";
 
 let baseURL = "";
 
 if (process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:3003";
 } else {
-  baseURL = "you heroku backend url here";
+  baseURL = "https://backend-cocktails.herokuapp.com";
 }
 
 class ShowCocktail extends React.Component {
@@ -88,7 +88,9 @@ class ShowCocktail extends React.Component {
         (err) => console.log(err)
       );
   }
-
+  componentDidMount() {
+    console.log(this.props.id);
+  }
   handleAddDrinks(drink) {
     console.log(this.state.allDrinks);
     const copyDrinks = [...this.state.allDrinks];
@@ -168,9 +170,11 @@ class ShowCocktail extends React.Component {
           />
         ) : (
           <div>
-            <Button variant="secondary" onClick={this.props.getCocktail}>Back to Search Results</Button>
+            <Button variant="secondary" onClick={this.props.getCocktail}>
+              Back to Search Results
+            </Button>
             <p></p>
-            <h1>{ this.state.name }</h1>
+            <h1>{this.state.name}</h1>
             <img src={this.state.image} alt="cocktail" height="200px" />
             <p></p>
             <div>
@@ -238,7 +242,16 @@ class ShowCocktail extends React.Component {
                   id="glassware"
                   value={this.state.glassware}
                 />
-                <Button variant="success" className="love" type="submit" value="🤎" >Add to My Cocktails</Button>
+
+                <Button
+                  variant="success"
+                  className="love"
+                  type="submit"
+                  value="🤎"
+                >
+                  Add to My Cocktails
+                </Button>
+
               </Form>
             </div>
             <p></p>
@@ -263,8 +276,7 @@ class ShowCocktail extends React.Component {
                 })}
               </tbody>
             </Table>
-            <p></p>
-            
+       
           </div>
         )}
       </Container>

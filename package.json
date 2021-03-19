@@ -1,6 +1,10 @@
 {
   "name": "front_end",
   "version": "0.1.0",
+  "engines": {
+    "node": "15.6.0",
+    "npm": "7.4.0"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
