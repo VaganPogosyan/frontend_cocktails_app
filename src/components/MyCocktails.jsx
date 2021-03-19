@@ -2,7 +2,7 @@ import React from "react";
 import ShowSelectedDrink from "./ShowSelectedDrink";
 import UpdateCocktail from "./UpdateCocktail";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Button, Card, Row, ButtonGroup} from "react-bootstrap";
+import { Container, Button, Card, Row, ButtonGroup } from "react-bootstrap";
 
 class MyCocktails extends React.Component {
   constructor(props) {
@@ -19,23 +19,18 @@ class MyCocktails extends React.Component {
       drink: "",
       showUpdate: false,
       theDrink: this.props.drink,
+      allDrinks: this.props.allDrinks,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
     this.backToIndex = this.backToIndex.bind(this);
     this.showAllMyDrinks = this.showAllMyDrinks.bind(this);
   }
 
-  getSelectedCocktail(drink) {
-    this.setState({
-      drink: drink,
-      hide: !this.state.hide,
-    });
-    console.log(this.state.drink);
-  }
   showAllMyDrinks() {
     this.setState({
       hide: !this.setState.hide,
     });
+    console.log(this.state.drink._id);
   }
 
   handleUpdate() {
@@ -43,15 +38,27 @@ class MyCocktails extends React.Component {
       showUpdate: !this.state.showUpdate,
     });
   }
+  getSelectedCocktail(drink) {
+    this.setState({
+      drink: drink,
+      hide: !this.state.hide,
+    });
+  }
   backToIndex() {
     window.location.reload();
+  }
+  update(drink) {
+    this.getSelectedCocktail(drink);
+    this.handleUpdate();
   }
 
   render() {
     return (
       <div>
         {this.state.hide ? (
-          <Button variant="secondary" onClick={this.backToIndex}>back to home</Button>
+          <Button variant="secondary" onClick={this.backToIndex}>
+            back to home
+          </Button>
         ) : (
           ""
         )}
@@ -61,6 +68,7 @@ class MyCocktails extends React.Component {
             theDrink={this.state.theDrink}
             id={this.state.drink._id}
             handleUpdate={this.handleUpdate}
+            drink={this.state.drink}
           />
         ) : (
           <div>
@@ -71,7 +79,6 @@ class MyCocktails extends React.Component {
                 <Row xs={2} sm={3} md={4} lg={5}>
                   {this.props.allDrinks.map((drink) => {
                     return (
-                      
                       <Card key={drink._id}>
                         <Card.Body
                           onClick={() => this.getSelectedCocktail(drink)}
@@ -87,9 +94,9 @@ class MyCocktails extends React.Component {
                           >
                             🗑️
                           </Button>
-                          <Button 
+                          <Button
                             variant="info"
-                            onClick={() => this.handleUpdate()}
+                            onClick={() => this.update(drink)}
                           >
                             update
                           </Button>
