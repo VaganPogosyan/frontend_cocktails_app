@@ -53,7 +53,7 @@ class App extends React.Component {
 
 
   renderMyCocktails() {
-    fetch('http://localhost:3003/cocktails')
+    fetch('https://backend-cocktails.herokuapp.com')
       .then(
         data => {
           return data.json()
@@ -77,26 +77,26 @@ class App extends React.Component {
             <div>
               <h1>My Favorite Cocktails</h1>
               <Row xs={2} sm={3} md={4} lg={5}>
-              {
-                this.state.myDrinks.map(myDrink => {
-                  return (
+                {
+                  this.state.myDrinks.map(myDrink => {
+                    return (
 
-                    <div>
-                      {/* <div>
+                      <div>
+                        {/* <div>
                         <h3>{myDrink.name}</h3>
                         <img src={myDrink.image} height="200px"></img>
                       </div> */}
 
-                          <Card> 
-                            <Card.Img variant="top" src={myDrink.image}/>
-                            <Card.Title>{myDrink.name}</Card.Title>
-                          </Card>
+                        <Card>
+                          <Card.Img variant="top" src={myDrink.image} />
+                          <Card.Title>{myDrink.name}</Card.Title>
+                        </Card>
 
-                    </div>
-                  )
-                })
-              }
-            </Row>
+                      </div>
+                    )
+                  })
+                }
+              </Row>
             </div>
             :
             <div>
