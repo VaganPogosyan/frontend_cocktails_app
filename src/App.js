@@ -53,7 +53,7 @@ class App extends React.Component {
 
 
   renderMyCocktails() {
-    fetch('https://backend-cocktails.herokuapp.com')
+    fetch('https://backend-cocktails.herokuapp.com/cocktails')
       .then(
         data => {
           return data.json()
