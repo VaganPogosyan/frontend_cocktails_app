@@ -238,7 +238,7 @@ class ShowCocktail extends React.Component {
                   id="glassware"
                   value={this.state.glassware}
                 />
-                <Button variant="success" className="love" type="submit" value="🤎" >Add to My Cocktails</Button>
+                <Button variant="secondary" className="love" type="submit" value="🤎" >Add to My Cocktails</Button>
               </Form>
             </div>
             <p></p>
