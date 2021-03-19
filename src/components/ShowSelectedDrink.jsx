@@ -44,7 +44,9 @@ class ShowSelectedDrink extends React.Component {
     return (
       <Container>
         <p></p>
-        <Button variant="secondary" onClick={this.props.showAllMyDrinks}>back to My Cocktails</Button>
+        <Button variant="secondary" onClick={this.props.showAllMyDrinks}>
+          back to My Cocktails
+        </Button>
         <p></p>
         <h2>{this.state.name}</h2>
         <img src={this.state.image} height="200px"></img>
@@ -58,8 +60,8 @@ class ShowSelectedDrink extends React.Component {
         <h4>Ingredients</h4>
         <Table>
           <thead>
-              <th>measurement</th>
-              <th>ingredient</th>
+            <th>measurement</th>
+            <th>ingredient</th>
           </thead>
           <tbody>
             {this.state.ingredientsObjects.map((ingredient) => {
@@ -72,7 +74,6 @@ class ShowSelectedDrink extends React.Component {
             })}
           </tbody>
         </Table>
-        {console.log(this.state.ingredientsObjects[0])}
       </Container>
     );
   }
