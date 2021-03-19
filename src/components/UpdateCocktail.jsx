@@ -7,7 +7,7 @@ let id = "";
 if (process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:3003";
 } else {
-  baseURL = "you heroku backend url here";
+  baseURL = "https://backend-cocktails.herokuapp.com";
 }
 class UpdateCocktail extends React.Component {
   constructor(props) {

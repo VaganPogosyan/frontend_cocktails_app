@@ -9,7 +9,7 @@ let baseURL = "";
 if (process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:3003";
 } else {
-  baseURL = "you heroku backend url here";
+  baseURL = "https://backend-cocktails.herokuapp.com";
 }
 
 class ShowCocktail extends React.Component {
@@ -242,6 +242,7 @@ class ShowCocktail extends React.Component {
                   id="glassware"
                   value={this.state.glassware}
                 />
+
                 <Button
                   variant="success"
                   className="love"
@@ -250,6 +251,7 @@ class ShowCocktail extends React.Component {
                 >
                   Add to My Cocktails
                 </Button>
+
               </Form>
             </div>
             <p></p>
@@ -274,7 +276,7 @@ class ShowCocktail extends React.Component {
                 })}
               </tbody>
             </Table>
-            <p></p>
+       
           </div>
         )}
       </Container>
