@@ -113,7 +113,7 @@ class UpdateCocktail extends React.Component {
             <div>
               <form onSubmit={this.handleSubmit}>
                 {/* Name */}
-
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   name="name"
@@ -122,8 +122,9 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Name"
                 />
+                <br />
                 {/* Image */}
-
+                <label htmlFor="image">Image</label>
                 <input
                   type="text"
                   name="image"
@@ -132,8 +133,10 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Image"
                 />
-                {/* Instructions */}
+                <br />
 
+                {/* Instructions */}
+                <label htmlFor="instructions">Instructions</label>
                 <input
                   type="text"
                   name="instructions"
@@ -142,8 +145,9 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Instructions"
                 />
+                <br />
                 {/* Ingredients */}
-
+                <label htmlFor="ingredients">Ingredients</label>
                 <input
                   type="text"
                   name="ingredients"
@@ -152,8 +156,9 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Ingredients"
                 />
+                <br />
                 {/* Alcoholic */}
-
+                <label htmlFor="alcoholic">Type of Drink</label>
                 <input
                   type="text"
                   name="alcoholic"
@@ -162,8 +167,9 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Alcoholic"
                 />
+                <br />
                 {/* Measurements */}
-
+                <label htmlFor="measurements">Measurements</label>
                 <input
                   type="text"
                   name="measurements"
@@ -172,8 +178,9 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Measurements"
                 />
+                <br />
                 {/* Glassware */}
-
+                <label htmlFor="glassware">Type of Glass</label>
                 <input
                   type="text"
                   name="glassware"
@@ -182,6 +189,7 @@ class UpdateCocktail extends React.Component {
                   onChange={this.handleChange}
                   placeholder="Glassware"
                 />
+                <br />
                 <input type="submit" value="Add" />
               </form>
             </div>
